@@ -131,7 +131,7 @@ const CreateProperty = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label>Price per Night ($) *</label>
+              <label>Price per Night (₹) *</label>
               <input
                 type="number"
                 name="price"

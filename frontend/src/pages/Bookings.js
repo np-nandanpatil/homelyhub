@@ -28,7 +28,7 @@ const Bookings = () => {
   };
 
   const getStatusBadgeClass = (status) => {
-    switch (status) {
+    switch (status || 'pending') {
       case 'confirmed':
         return 'status-confirmed';
       case 'pending':
@@ -104,14 +104,14 @@ const Bookings = () => {
 
                 <div className="booking-footer">
                   <div className="price-status">
-                    <span className="total-price">${booking.totalPrice}</span>
+                    <span className="total-price">₹{booking.totalPrice}</span>
                     <span className={`status-badge ${getStatusBadgeClass(booking.status)}`}>
-                      {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                      {(booking.status || 'pending').charAt(0).toUpperCase() + (booking.status || 'pending').slice(1)}
                     </span>
                   </div>
 
                   <div className="booking-actions">
-                    {booking.status === 'pending' && (
+                    {(booking.status || 'pending') === 'pending' && (
                       <>
                         <button
                           className="pay-btn"
@@ -127,7 +127,7 @@ const Bookings = () => {
                         </button>
                       </>
                     )}
-                    {booking.status !== 'cancelled' && booking.status !== 'pending' && (
+                    {(booking.status || 'pending') !== 'cancelled' && (booking.status || 'pending') !== 'pending' && (
                       <button
                         className="cancel-btn"
                         onClick={() => handleCancel(booking._id)}

@@ -22,7 +22,7 @@ const propertyReducer = (state = initialState, action) => {
     case FETCH_ERROR:
       return { ...state, loading: false, error: action.payload };
     case SET_CURRENT_PROPERTY:
-      return { ...state, currentProperty: action.payload };
+      return { ...state, currentProperty: action.payload, loading: false };
     case CLEAR_CURRENT_PROPERTY:
       return { ...state, currentProperty: null };
     default:

@@ -77,7 +77,7 @@ const HostProperties = () => {
                   <td className="title">{property.title}</td>
                   <td>{property.location}</td>
                   <td>{property.type}</td>
-                  <td>${property.price}</td>
+                  <td>₹{property.price}</td>
                   <td>{property.maxGuests}</td>
                   <td>{new Date(property.createdAt).toLocaleDateString()}</td>
                   <td className="actions">

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { bookingAPI } from '../../services/api';
 
 const initialState = {
   bookings: [],
@@ -22,7 +22,7 @@ const bookingReducer = (state = initialState, action) => {
     case FETCH_ERROR:
       return { ...state, loading: false, error: action.payload };
     case SET_CURRENT_BOOKING:
-      return { ...state, currentBooking: action.payload };
+      return { ...state, currentBooking: action.payload, loading: false };
     case CLEAR_BOOKINGS:
       return { ...state, bookings: [] };
     default:
@@ -33,10 +33,7 @@ const bookingReducer = (state = initialState, action) => {
 export const fetchUserBookings = () => async (dispatch) => {
   dispatch({ type: FETCH_REQUEST });
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get('/api/bookings/user', {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await bookingAPI.getUserBookings();
     dispatch({ type: FETCH_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: FETCH_ERROR, payload: error.response?.data?.message || 'Error fetching bookings' });
@@ -46,10 +43,7 @@ export const fetchUserBookings = () => async (dispatch) => {
 export const fetchPropertyBookings = (propertyId) => async (dispatch) => {
   dispatch({ type: FETCH_REQUEST });
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get(`/api/bookings/property/${propertyId}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await bookingAPI.getPropertyBookings(propertyId);
     dispatch({ type: FETCH_SUCCESS, payload: response.data });
   } catch (error) {
     dispatch({ type: FETCH_ERROR, payload: error.response?.data?.message || 'Error fetching bookings' });
@@ -59,10 +53,7 @@ export const fetchPropertyBookings = (propertyId) => async (dispatch) => {
 export const createBooking = (bookingData) => async (dispatch) => {
   dispatch({ type: FETCH_REQUEST });
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.post('/api/bookings', bookingData, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await bookingAPI.create(bookingData);
     dispatch({ type: SET_CURRENT_BOOKING, payload: response.data });
     return response.data;
   } catch (error) {
@@ -74,10 +65,7 @@ export const createBooking = (bookingData) => async (dispatch) => {
 
 export const cancelBooking = (bookingId) => async (dispatch) => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.put(`/api/bookings/${bookingId}/cancel`, {}, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await bookingAPI.cancel(bookingId);
     return response.data;
   } catch (error) {
     throw error;
@@ -87,10 +75,7 @@ export const cancelBooking = (bookingId) => async (dispatch) => {
 export const fetchBookingById = (bookingId) => async (dispatch) => {
   dispatch({ type: FETCH_REQUEST });
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get(`/api/bookings/${bookingId}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+    const response = await bookingAPI.getById(bookingId);
     dispatch({ type: SET_CURRENT_BOOKING, payload: response.data });
   } catch (error) {
     dispatch({ type: FETCH_ERROR, payload: error.response?.data?.message || 'Error fetching booking' });

@@ -150,7 +150,7 @@ const AdminDashboard = () => {
             </div>
             <div className="stat-card full-width">
               <h3>Total Revenue</h3>
-              <p className="stat-value">${dashboard.totalRevenue.toFixed(2)}</p>
+              <p className="stat-value">₹{dashboard.totalRevenue.toFixed(2)}</p>
             </div>
 
             <div className="recent-bookings full-width">
@@ -170,7 +170,7 @@ const AdminDashboard = () => {
                     <tr key={booking._id}>
                       <td>{booking.user?.name}</td>
                       <td>{booking.property?.title}</td>
-                      <td>${booking.totalPrice}</td>
+                      <td>₹{booking.totalPrice}</td>
                       <td>
                         <span className={`status-badge status-${booking.status}`}>
                           {booking.status}
@@ -243,7 +243,7 @@ const AdminDashboard = () => {
                     <td>{property.title}</td>
                     <td>{property.location}</td>
                     <td>{property.type}</td>
-                    <td>${property.price}</td>
+                    <td>₹{property.price}</td>
                     <td>{property.host?.name}</td>
                     <td>{new Date(property.createdAt).toLocaleDateString()}</td>
                     <td className="actions">
@@ -282,7 +282,7 @@ const AdminDashboard = () => {
                     <td>{booking.property?.title}</td>
                     <td>{new Date(booking.checkIn).toLocaleDateString()}</td>
                     <td>{new Date(booking.checkOut).toLocaleDateString()}</td>
-                    <td>${booking.totalPrice}</td>
+                    <td>₹{booking.totalPrice}</td>
                     <td>
                       <span className={`status-badge status-${booking.status}`}>
                         {booking.status}

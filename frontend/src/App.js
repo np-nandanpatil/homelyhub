@@ -32,7 +32,7 @@ function App() {
   const { user, token } = useSelector((state) => state.auth);
 
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Navigation />
       <div className="app-container">
         <Routes>

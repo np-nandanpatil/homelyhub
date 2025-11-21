@@ -98,7 +98,7 @@ const Home = () => {
                     <span>Max {property.maxGuests} Guests</span>
                   </div>
                   <div className="property-footer">
-                    <span className="price">${property.price}/night</span>
+                    <span className="price">₹{property.price}/night</span>
                     <Link to={`/property/${property._id}`} className="view-btn">
                       View Details
                     </Link>

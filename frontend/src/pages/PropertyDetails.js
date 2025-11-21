@@ -147,7 +147,7 @@ const PropertyDetails = () => {
             </div>
             <div className="spec">
               <span className="spec-label">Price/Night</span>
-              <span className="spec-value">${currentProperty.price}</span>
+              <span className="spec-value">₹{currentProperty.price}</span>
             </div>
           </div>
 
@@ -176,7 +176,7 @@ const PropertyDetails = () => {
 
         <div className="booking-section">
           <div className="booking-card">
-            <h2>${currentProperty.price} <span>/night</span></h2>
+            <h2>₹{currentProperty.price} <span>/night</span></h2>
             {error && <div className="error-message">{error}</div>}
             {successMessage && <div className="success-message">{successMessage}</div>}
 
