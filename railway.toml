@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+watchPaths = ["backend"]
+
+[build.nixpacks]
+providers = ["node"]
+
+[deploy]
+startCommand = "cd backend && npm install && npm start"
