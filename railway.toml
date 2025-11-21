@@ -1,9 +1,5 @@
 [build]
-builder = "nixpacks"
-watchPaths = ["backend"]
-
-[build.nixpacks]
-providers = ["node"]
+dockerfile = "./Dockerfile"
 
 [deploy]
-startCommand = "cd backend && npm install && npm start"
+port = 5000
