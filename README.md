@@ -121,9 +121,9 @@ WSA/
    - Edit `.env` file:
    ```
    MONGO_URI=mongodb://localhost:27017/homelyhub
-   JWT_SECRET=your_secure_jwt_secret_key
-   RAZORPAY_KEY_ID=your_razorpay_key_id
-   RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+   JWT_SECRET=secure_jwt_secret_key
+   RAZORPAY_KEY_ID=razorpay_key_id
+   RAZORPAY_KEY_SECRET=razorpay_key_secret
    PORT=5000
    ```
 
