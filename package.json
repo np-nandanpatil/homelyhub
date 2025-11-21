@@ -8,7 +8,7 @@
     "dev": "cd backend && npm run dev",
     "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
   },
-  "keywords": ["airbnb", "rental", "mern", "razorpay"],
+  "keywords": ["airbnb", "rental", "mern", "razorpay", "homelyhub"],
   "author": "",
   "license": "ISC"
 }

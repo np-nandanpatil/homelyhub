@@ -8,7 +8,7 @@ A full-stack application built with MongoDB, Express.js, React, and Node.js that
 - 🔐 User authentication (Sign up, Login, Profile management)
 - 🏘️ Browse and search properties with advanced filters
 - 📅 Make bookings with date selection
-- 💳 Secure payment integration with Stripe
+- 💳 Secure payment integration with Razorpay
 - 📊 Manage bookings and view history
 - 👤 Update profile and change password
 
@@ -33,7 +33,7 @@ A full-stack application built with MongoDB, Express.js, React, and Node.js that
 - **Database**: MongoDB with Mongoose
 - **Authentication**: JWT (JSON Web Tokens)
 - **Password Hashing**: bcryptjs
-- **Payment Gateway**: Stripe
+- **Payment Gateway**: Razorpay
 - **File Upload**: Multer
 
 ### Frontend
@@ -41,7 +41,7 @@ A full-stack application built with MongoDB, Express.js, React, and Node.js that
 - **State Management**: Redux with Redux Thunk
 - **Routing**: React Router v6
 - **HTTP Client**: Axios
-- **Payment**: Stripe React SDK
+- **Payment**: Razorpay Checkout
 - **Styling**: CSS3
 
 ## Project Structure
@@ -103,7 +103,7 @@ WSA/
 ### Prerequisites
 - Node.js (v14 or higher)
 - MongoDB (Local or Atlas)
-- Stripe Account
+- Razorpay Account
 
 ### Backend Setup
 
@@ -122,7 +122,8 @@ WSA/
    ```
    MONGO_URI=mongodb://localhost:27017/homelyhub
    JWT_SECRET=your_secure_jwt_secret_key
-   STRIPE_SECRET_KEY=your_stripe_secret_key
+   RAZORPAY_KEY_ID=your_razorpay_key_id
+   RAZORPAY_KEY_SECRET=your_razorpay_key_secret
    PORT=5000
    ```
 
@@ -154,7 +155,6 @@ WSA/
 3. **Configure environment variables**
    - Edit `.env` file:
    ```
-   REACT_APP_STRIPE_PUBLIC_KEY=your_stripe_public_key
    REACT_APP_API_URL=http://localhost:5000/api
    ```
 
@@ -194,9 +194,8 @@ WSA/
 - `PUT /api/bookings/:id/status` - Update booking status (Admin)
 
 ### Payments
-- `POST /api/payments/create-payment-intent` - Create payment
-- `POST /api/payments/confirm-payment` - Confirm payment
-- `GET /api/payments/status/:paymentIntentId` - Get payment status
+- `POST /api/payments/create-order` - Create payment order
+- `POST /api/payments/verify-payment` - Verify payment
 
 ### Admin
 - `GET /api/admin/dashboard` - Get dashboard stats
@@ -233,7 +232,7 @@ WSA/
 3. Use filters to search
 4. Click on property for details
 5. Select dates and book
-6. Complete payment with Stripe
+6. Complete payment with Razorpay
 
 ### As a Host
 1. Sign up as Host
@@ -253,7 +252,7 @@ WSA/
 - Password hashing with bcryptjs
 - JWT authentication
 - Protected API routes with role-based access
-- Secure payment processing with Stripe
+- Secure payment processing with Razorpay
 - Input validation
 - CORS enabled
 
@@ -282,9 +281,9 @@ WSA/
 - Check proxy setting in frontend package.json
 
 ### Payment Issues
-- Verify Stripe keys are correct
-- Use Stripe test keys for development
-- Check Stripe API version compatibility
+- Verify Razorpay keys are correct
+- Use Razorpay test keys for development
+- Check Razorpay API version compatibility
 
 ## License
 

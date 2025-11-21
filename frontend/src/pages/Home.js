@@ -69,7 +69,7 @@ const Home = () => {
         <h2>Available Properties</h2>
         {loading ? (
           <div className="loading">Loading properties...</div>
-        ) : properties.length === 0 ? (
+        ) : !properties || properties.length === 0 ? (
           <div className="no-results">No properties found</div>
         ) : (
           <div className="properties-grid">
@@ -89,19 +89,25 @@ const Home = () => {
                   )}
                 </div>
                 <div className="property-info">
-                  <h3>{property.title}</h3>
-                  <p className="location">📍 {property.location}</p>
-                  <p className="description">{property.description.substring(0, 100)}...</p>
+                  <h3>{property.title || 'Untitled Property'}</h3>
+                  <p className="location">📍 {property.location || 'Location not specified'}</p>
+                  <p className="description">{property.description ? property.description.substring(0, 100) + '...' : 'No description available'}</p>
                   <div className="property-details">
-                    <span>{property.bedrooms} Bedrooms</span>
-                    <span>{property.bathrooms} Bathrooms</span>
-                    <span>Max {property.maxGuests} Guests</span>
+                    <span>{property.bedrooms || 0} Bedrooms</span>
+                    <span>{property.bathrooms || 0} Bathrooms</span>
+                    <span>Max {property.maxGuests || 0} Guests</span>
                   </div>
                   <div className="property-footer">
-                    <span className="price">₹{property.price}/night</span>
-                    <Link to={`/property/${property._id}`} className="view-btn">
-                      View Details
-                    </Link>
+                    <span className="price">₹{property.price || 0}/night</span>
+                    {property._id ? (
+                      <Link to={`/property/${property._id}`} className="view-btn">
+                        View Details
+                      </Link>
+                    ) : (
+                      <button className="view-btn" disabled>
+                        View Details
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
